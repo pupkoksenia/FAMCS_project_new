@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post_feed</title>
+    <link rel="stylesheet" href="post_feed.css">
+</head>
+
+<body>
+    <div class="bigboss">
+        <div class="header" style="grid-area: header" id='top'>
+            <img src="header_images/image_icon.svg" style="float:left; margin:0px 0px 0px 5px;">
+            <span class="name_surname"></span> 
+         
+          
+        </div>
+        <div class="left" style="grid-area: left">
+        
+
+                        <legend>Filter:</legend>
+                        <span class="bl"><label for="name">Name</label><input type="text" id="name"></span>
+                        <span class="bl"><label for="model">Model</label><input type="text" id="model"></span>
+                        <span class="bl"><label for="country">Country</label><input type="text" id="country"></span>
+                        <span class="bl"><label for="displacement">Displacement</label><input type="number" id="displacement"></span>
+                        <span class="bl"><label for="price">Price</label><input type="number" id="price"></span>
+                        <span class="bl"><label for="date">Hashtags</label><input type="text" id="hashtags"></span>
+
+                        <span class="bl"><input type="submit" value="Отправить" onclick="Sorting(this)"></span>
+                        <span class="bl"><input type="submit" value="Очистить" onclick="SortingClear()"></span>
+                    </div>
+
+
+
+
+         <div class="right" style="grid-area: right">
+            <div class="right-list-block">
+ 
+           <div class="right-list">
+               
+            </div>
+        </div>
+            <div class="loading" onclick="showNewTenElements()"><span>Load more...</span> </div>
+
+
+
+
+
+
+
+        </div>
+
+
+        <div class="footer" style="grid-area: footer"> ©2020-2021</div>
+    </div> 
+    <script  src="post_feed_array_photo.js"></script>
+   <script src="viewList.js"></script> 
+   <script  src="postList.js"></script>
+    <script src="listener.js"></script>
+    <script src="load.js"></script>
+   <script>
+var user = location.search.split('user=')[1];
+//console.log(user);
+if(user==undefined){
+    document.getElementById("top").innerHTML+='<a href="sign_in.html" class="log_in">Log in</a>';
+}
+else
+{
+    user=decodeURI(user);
+document.getElementsByClassName("name_surname")[0].innerHTML=user;
+document.getElementById("top").innerHTML+='<a href="post_edit.html?user='+user+'" class="post">Add post</a>';
+document.getElementById("top").innerHTML+='<span class="log_out">Log out</span>';
+}
+
+
+
+       Load();
+   VV.showTenEl(0,10);
+
+function SortingClear(){
+    document.getElementById("name").value='';
+    document.getElementById("model").value='';
+    document.getElementById("country").value='';
+    document.getElementById("displacement").value='';
+    document.getElementById("price").value='';
+    document.getElementById("hashtags").value='';
+
+    Sorting();
+}
+
+   </script>
+   <script src="filter.js"></script>
+</body>
+
+</html>
